@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Aero Simulator</title>
+      
+    <style>
+        
+    #enemy 
+    {
+        margin-top: 250px;
+        margin-left: 800px;
+        position:absolute;
+        top:0px;
+        animation: obs 5s linear infinite;
+    }
+        
+    #enemy1 
+    {
+        margin-top: 350px;
+        margin-left: 900px;
+        position:absolute;
+        top:0px;
+        animation: obs 10s linear infinite;
+    }
+        
+    #enemy2 
+    {
+        margin-top: 100px;
+        margin-left: 700px;
+        position:absolute;
+        top:0px;
+        animation: obs 20s linear infinite;
+    }
+
+    #animate-area	
+    { 
+        
+	width: 3000px; 
+	height: 600px; 
+	background-image: url(clouds.png);
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+
+	animation: animatedBackground 50s linear infinite;
+    }
+    
+    @keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position: -100% 0; }
+    }
+    
+    @keyframes obs {
+0%{
+position:absolute;
+right:20%;
+}
+20%{
+position:absolute;
+right:40%;
+}
+40%{
+position:absolute;
+right:60%;
+}
+60%{
+position:absolute;
+right:80%;
+}
+100%{
+position:absolute;
+right:100%;
+}
+}
+    
+</style>
+
+    <script type="text/javascript">
+
+            function leftArrowPressed() {
+            var element = document.getElementById("plane");
+            element.style.left = parseInt(element.style.left) - 5 + 'px';
+            }
+
+            function rightArrowPressed() {
+            var element = document.getElementById("plane");
+            element.style.left = parseInt(element.style.left) + 5 + 'px';
+
+            }
+
+            function upArrowPressed() {
+            var element = document.getElementById("plane");
+            element.style.top = parseInt(element.style.top) - 5 + 'px';
+            }
+
+            function downArrowPressed() {
+            var element = document.getElementById("plane");
+            element.style.top = parseInt(element.style.top) + 5 + 'px';
+            }
+
+            function moveSelection(evt) {
+                switch (evt.keyCode) {
+                    case 37:
+                    leftArrowPressed();
+                    break;
+                    case 39:
+                    rightArrowPressed();
+                    break;
+                    case 38:
+                    upArrowPressed();
+                    break;
+                    case 40:
+                    downArrowPressed();
+                    break;
+                    }
+                };
+
+        function docReady()
+        {
+          
+          window.addEventListener('keydown', moveSelection);
+        }
+
+  </script>
+  </head>
+
+  <body onload="docReady()" onkeydown="" onkeyup="" style= "overflow:hidden;">
+  <img id="plane" src="plane1.png" style="position:absolute;left:0; top:0" height="250" width="250">
+  <div id = "animate-area"> </div>
+    <div id = "enemy" style="position:absolute">
+    <img src="Enemy1.png" width=100px; height=100px>
+    </div>
+      
+    <div id = "enemy1" style="position:absolute">
+    <img src="Enemy1.png" width=100px; height=100px>
+    </div>
+      
+    <div id = "enemy2" style="position:absolute">
+    <img src="Enemy1.png" width=100px; height=100px>
+    </div>
+  </body>
+</html>

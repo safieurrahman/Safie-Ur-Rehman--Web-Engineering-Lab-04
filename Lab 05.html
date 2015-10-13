@@ -7,28 +7,11 @@
         
     #enemy 
     {
-        margin-top: 250px;
-        margin-left: 800px;
-        position:absolute;
-        top:0px;
-        animation: obs 5s linear infinite;
+        animation: obs 15s linear infinite;
     }
         
     #enemy1 
     {
-        margin-top: 350px;
-        margin-left: 900px;
-        position:absolute;
-        top:0px;
-        animation: obs 10s linear infinite;
-    }
-        
-    #enemy2 
-    {
-        margin-top: 100px;
-        margin-left: 700px;
-        position:absolute;
-        top:0px;
         animation: obs 20s linear infinite;
     }
 
@@ -51,24 +34,19 @@
     
     @keyframes obs {
 0%{
-position:absolute;
-right:20%;
+left: 100%;
 }
 20%{
-position:absolute;
-right:40%;
+left:75%
 }
 40%{
-position:absolute;
-right:60%;
+left:50%
 }
 60%{
-position:absolute;
-right:80%;
+left:25%
 }
 100%{
-position:absolute;
-right:100%;
+left:0%;
 }
 }
     
@@ -120,22 +98,69 @@ right:100%;
           window.addEventListener('keydown', moveSelection);
         }
 
+        window.setInterval(function(){
+    
+    var element = document.getElementById("plane");
+    var enemy = document.getElementById("enemy");
+    var enemy1 = document.getElementById("enemy1");
+    
+            
+    
+    //Get the height and position of the player
+    var planeTop    = parseInt(element.style.top);    
+    var planeLeft    = parseInt(element.style.left);
+    
+        var rect = enemy.getBoundingClientRect ();
+        l = rect.left;
+        t = rect.top;
+        b = rect.bottom;
+        r = rect.right;
+            
+        var rect1 = enemy1.getBoundingClientRect ();
+        l1 = rect1.left;
+        t1 = rect1.top;
+        b1 = rect1.bottom;
+        r1 = rect1.right;
+        
+            
+    if((planeLeft + 250 > l) && (planeTop + 250 > b) && (planeTop < b) && (planeLeft < l)) {
+        
+    document.getElementById("plane").style.display = "none";
+	document.getElementById("enemy").style.animationPlayState = "paused";
+    document.getElementById("enemy1").style.animationPlayState = "paused";	
+	document.getElementById("animate-area").style.animationPlayState = "paused";
+    alert ("Game Over");
+        
+    }
+    
+    if((planeLeft + 250 > l1) && (planeTop + 250 > b1) && (planeTop < b1) && (planeLeft < l1))  {
+        
+    document.getElementById("plane").style.display = "none";
+	document.getElementById("enemy").style.animationPlayState = "paused";
+    document.getElementById("enemy1").style.animationPlayState = "paused";	
+	document.getElementById("animate-area").style.animationPlayState = "paused";
+    alert ("Game Over");
+        
+    }
+            
+            
+},33);
+        
   </script>
   </head>
 
   <body onload="docReady()" onkeydown="" onkeyup="" style= "overflow:hidden;">
-  <img id="plane" src="plane1.png" style="position:absolute;left:0; top:0" height="250" width="250">
+  <img id="plane" src="plane1.png" style="position:absolute;left:0; top:0" height="150" width="150">
   <div id = "animate-area"> </div>
-    <div id = "enemy" style="position:absolute">
+    <div id = "enemy" style="position:absolute; top:150px;
+        left:800px">
     <img src="Enemy1.png" width=100px; height=100px>
     </div>
       
-    <div id = "enemy1" style="position:absolute">
+    <div id = "enemy1" style="position:absolute;  top: 450px;
+        left: 900px; ">
     <img src="Enemy1.png" width=100px; height=100px>
     </div>
       
-    <div id = "enemy2" style="position:absolute">
-    <img src="Enemy1.png" width=100px; height=100px>
-    </div>
   </body>
 </html>
